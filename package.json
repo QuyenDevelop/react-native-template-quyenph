@@ -1,14 +1,15 @@
 {
   "name": "react-native-template-quyenph",
   "title": "A customize template for React Native.",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "A customize template for React Native.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
     "template",
-    "template.config.js"
+    "template.config.js",
+    "script.js"
   ],
   "keywords": [
     "react-native",
