@@ -32,11 +32,7 @@ See the below table to find out which version of the template to use.
 
 | React Native | Template |
 | ------------ | -------- |
-| 0.71         | 1.0.\*   |
-
-## Contributing
-
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+| 0.71         | 1.1.\*   |
 
 ## 🔖 License
 
