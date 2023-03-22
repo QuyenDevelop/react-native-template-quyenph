@@ -5,7 +5,9 @@ export const CThemes = {
   ...DefaultTheme,
   colors: { ...DefaultTheme.colors, ...Themes.Color },
   fonts: {
-    primary: "SFProText-Regular",
+    primary: "Inter",
+    medium: "Inter-Medium",
+    regular: "Inter-Regular",
   },
   screenUtils: Themes.ScreenUtils,
   constantStyles: Themes.ConstantStyles,

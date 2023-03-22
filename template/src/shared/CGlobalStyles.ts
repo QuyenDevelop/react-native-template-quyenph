@@ -17,12 +17,10 @@ export const CGlobalStyles = StyleSheet.create({
   ...Themes.ShadowStyles,
   ...Themes.TextStyles,
   fontMedium: {
-    fontFamily: CThemes.fonts.primary,
-    fontWeight: "600",
+    fontFamily: CThemes.fonts.medium,
   },
   fontRegular: {
-    fontFamily: CThemes.fonts.primary,
-    fontWeight: "400",
+    fontFamily: CThemes.fonts.regular,
   },
   appContent: {
     flex: 1,
