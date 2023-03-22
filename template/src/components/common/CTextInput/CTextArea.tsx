@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { BaseTextArea, ITextareaProps } from "@phamquyen/rn-core-components";
+import { BaseTextArea, ITextareaProps } from "@janbox/rn-core-ui";
 
 interface CTextAreaProps extends ITextareaProps {}
 

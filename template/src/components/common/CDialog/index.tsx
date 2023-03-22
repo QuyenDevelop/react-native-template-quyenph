@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { BaseDialog, DialogProps } from "@phamquyen/rn-core-components";
+import { BaseDialog, DialogProps } from "@janbox/rn-core-ui";
 
 interface CDialogProps extends DialogProps {}
 

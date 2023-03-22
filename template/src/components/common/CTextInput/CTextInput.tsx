@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { BaseTextInput, ITextInputProps } from "@phamquyen/rn-core-components";
+import { BaseTextInput, ITextInputProps } from "@janbox/rn-core-ui";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { CIcon } from "../CIcons";
 import CountryPicker, {

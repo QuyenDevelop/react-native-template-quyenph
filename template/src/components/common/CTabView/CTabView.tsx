@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { ITabView, ITabsProps } from "@phamquyen/rn-core-components";
+import { ITabView, ITabsProps } from "@janbox/rn-core-ui";
 
 interface CTabViewProps extends ITabsProps {}
 

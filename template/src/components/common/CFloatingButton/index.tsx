@@ -1,8 +1,5 @@
 import { FunctionComponent } from "react";
-import {
-  FloatingButtonProps,
-  IFloatingButton,
-} from "@phamquyen/rn-core-components";
+import { FloatingButtonProps, IFloatingButton } from "@janbox/rn-core-ui";
 
 interface CFloatingButtonProps extends FloatingButtonProps {}
 

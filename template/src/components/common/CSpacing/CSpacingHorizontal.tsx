@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { ISpacingHorizontal, DotProps } from "@phamquyen/rn-core-components";
+import { ISpacingHorizontal, DotProps } from "@janbox/rn-core-ui";
 
 export interface CSpacingProps extends DotProps {}
 

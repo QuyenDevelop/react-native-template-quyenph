@@ -1,5 +1,5 @@
 import { DefaultTheme } from "@react-navigation/native";
-import { Themes } from "@phamquyen/rn-core-components";
+import { Themes } from "@janbox/rn-core-ui";
 
 export const CThemes = {
   ...DefaultTheme,
