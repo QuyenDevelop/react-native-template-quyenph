@@ -50,7 +50,7 @@ const AwesomeApp = () => {
   );
 };
 
-const App = () => {
+const App: React.FunctionComponent = () => {
   return (
     <ErrorBoundary FallbackComponent={AppErrorBoundary}>
       <Provider store={store}>
@@ -62,4 +62,9 @@ const App = () => {
   );
 };
 
+// const codePushOptions = {
+//   checkFrequency: codePush.CheckFrequency.MANUAL,
+// };
+
+// export default codePush(codePushOptions)(App);
 export default App;
