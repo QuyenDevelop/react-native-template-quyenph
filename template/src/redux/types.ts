@@ -13,10 +13,12 @@ export interface IRootTodoState {
 }
 
 export interface IRootUserState {
+  isLogging: boolean | null;
   profile: Account | null;
   language: string | null;
   anonymousId: string | number[] | null;
   deviceId: string | null;
+  tokenId: string | null;
 }
 
 export interface IRootState {

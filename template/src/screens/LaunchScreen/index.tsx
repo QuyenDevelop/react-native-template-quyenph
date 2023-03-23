@@ -9,7 +9,6 @@ import React, { FunctionComponent, useCallback, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import * as RNLocalize from "react-native-localize";
 import uuid from "react-native-uuid";
-// import styles from "./styles";
 import LottieView from "lottie-react-native";
 import { AsyncStorage } from "@helpers";
 
@@ -89,9 +88,18 @@ export const LaunchScreen: FunctionComponent = () => {
       };
     }, []),
   );
+
+  /**
+   * @todo
+   * using LottieView to animated animations LaunchScreen
+   * import LottieView from "lottie-react-native";
+   * and using
+   */
+
   return (
     <View style={CGlobalStyles.flexCenter}>
       <Text style={styles.title}>Template</Text>
+
       <LottieView
         style={styles.loadingView}
         autoPlay={true}

@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
 export const useBoolean = (defaultValue?: boolean) => {
-  const [isShow, setIsShow] = useState<boolean>(!!defaultValue);
+  const [isShow, setIsShow] = useState<boolean>(defaultValue || false);
   const show = useCallback(() => {
     setIsShow(true);
   }, []);
@@ -9,7 +9,7 @@ export const useBoolean = (defaultValue?: boolean) => {
     setIsShow(false);
   }, []);
   const toggle = useCallback(() => {
-    setIsShow((prev) => !prev);
+    setIsShow(prev => !prev);
   }, []);
   return [isShow, show, hide, toggle] as const;
 };

@@ -23,3 +23,20 @@ export interface Account {
   city?: string;
   country?: string;
 }
+
+export interface loginInternalPayload {
+  username?: string;
+  password?: string;
+}
+
+export interface AuthorizeResult {
+  access_token: string;
+  expires_in: number;
+  authorizeAdditionalParameters?: { [name: string]: string };
+  tokenAdditionalParameters?: { [name: string]: string };
+  additionalParameters?: { [name: string]: string };
+  id_token: string;
+  refresh_token: string;
+  token_type: string;
+  scopes: [string];
+}

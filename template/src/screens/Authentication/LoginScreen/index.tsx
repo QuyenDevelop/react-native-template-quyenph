@@ -1,5 +1,6 @@
-import { CButton, CIcon, CRadioCheck, CTextInput } from "@components";
+import { CButton, CCheckBox, CIcon, CTextInput } from "@components";
 import { CONSTANT, SCREENS } from "@configs";
+import { AsyncStorage } from "@helpers";
 import { useAppNavigation, useAppSelector, useBoolean } from "@hooks";
 import { AuthStackParamList } from "@navigation";
 import { RouteProp } from "@react-navigation/core";
@@ -27,6 +28,7 @@ type NavigationRoute = RouteProp<AuthStackParamList, SCREENS.LOGIN_SCREEN>;
 
 export const LoginScreen: React.FunctionComponent = () => {
   const route = useRoute<NavigationRoute>();
+  // const dispatch = useAppDispatch();
   const navigation = useAppNavigation();
   const isGoBack = route?.params?.isGoBack;
   const [email, setEmail] = useState<string>("");
@@ -36,20 +38,50 @@ export const LoginScreen: React.FunctionComponent = () => {
   const [isLoading, showLoading, hideLoading] = useBoolean(false);
   const language = useAppSelector((state: IRootState) => state.user.language);
 
-  // const locates = {
-  //   locates: RNLocalize.getLocales(),
-  // };
+  const getEmailRemember = async () => {
+    const emailRemember = await AsyncStorage.getAsyncItem(
+      CONSTANT.TOKEN_STORAGE_KEY.REMEMBER_USER,
+    );
+    if (emailRemember) {
+      setEmail(emailRemember);
+      setIsRemember(true);
+    }
+  };
+
+  useEffect(() => {
+    getEmailRemember();
+  }, []);
+
   const onClearEmail = () => {
     setEmail("");
   };
+
   const onClearPassword = () => {
     setPassword("");
   };
 
   const loginWithEmail = () => {
-    navigation.navigate(SCREENS.BOTTOM_TAB_NAVIGATION, {
-      screen: SCREENS.HOME_SCREEN,
-    });
+    showLoading();
+    if (isRemember) {
+      AsyncStorage.setAsyncItem(
+        CONSTANT.TOKEN_STORAGE_KEY.REMEMBER_USER,
+        email,
+      );
+    } else {
+      AsyncStorage.removeAsyncItem(CONSTANT.TOKEN_STORAGE_KEY.REMEMBER_USER);
+    }
+    // dispatch(
+    //   asyncLoginAction({
+    //     username: email,
+    //     password: password,
+    //   }),
+    // );
+    setTimeout(() => {
+      hideLoading();
+      navigation.navigate(SCREENS.BOTTOM_TAB_NAVIGATION, {
+        screen: SCREENS.HOME_SCREEN,
+      });
+    }, 2000);
   };
   const loginWithGoogle = () => {};
   const loginWithFacebook = () => {};
@@ -122,7 +154,7 @@ export const LoginScreen: React.FunctionComponent = () => {
               marginVertical: CThemes.constantStyles.spacing16,
             }}
           >
-            <CRadioCheck
+            <CCheckBox
               isChecked={isRemember}
               handleCheck={() => {
                 setIsRemember(!isRemember);
