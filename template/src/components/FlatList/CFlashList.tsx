@@ -35,7 +35,7 @@ export interface Props<T> extends MasonryFlashListProps<T> {
 
 export type CFlashListProps<T = any> = React.FC<Props<T>>;
 
-export const CMasonryFlashList: CFlashListProps = props => {
+export const CFlashList: CFlashListProps = props => {
   const {
     data,
     renderListItem,

@@ -32,14 +32,7 @@ export const CTextInput: FunctionComponent<CTextInputProps> = props => {
     <BaseTextInput
       textRightComponent={
         isShowIconRight && (
-          <TouchableOpacity
-            onPress={rightIconClick}
-            style={{
-              marginLeft: CThemes.constantStyles.spacing8,
-              width: CThemes.screenUtils.scale(24),
-              alignItems: "flex-end",
-            }}
-          >
+          <TouchableOpacity onPress={rightIconClick}>
             <CIcon
               name={rightIconName}
               type={rightIconType}
