@@ -1,6 +1,6 @@
 import { authApi } from "@api";
-import { CONSTANT } from "@configs";
-import { Alert, AsyncStorage, Utils } from "@helpers";
+import { CONSTANT, SCREENS } from "@configs";
+import { Alert, AsyncStorage, Utils, navigationRef } from "@helpers";
 import { Account, AuthorizeResult, loginInternalPayload } from "@models";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { onChangeLanguage, translate } from "@shared";
@@ -45,7 +45,7 @@ function* takeLogin(action: PayloadAction<loginInternalPayload>) {
       );
       if (response) {
         yield call(takeUserInfo);
-        yield put(loginStatus(true));
+        yield () => navigationRef.navigate(SCREENS.ACCOUNT_INFORMATION_SCREEN);
         yield Utils.storeTokenResponse(response);
       }
     } else {

@@ -1,9 +1,5 @@
-import { CButton, CCheckBox, CTextInput } from "@components";
-import { SCREENS } from "@configs";
+import { CButton, CTextInput } from "@components";
 import { useAppNavigation, useAppSelector, useBoolean } from "@hooks";
-import { AuthStackParamList } from "@navigation";
-import { RouteProp } from "@react-navigation/core";
-import { useRoute } from "@react-navigation/native";
 import { IRootState } from "@redux";
 import { CGlobalStyles, CThemes, translate } from "@shared";
 import React, { useEffect } from "react";
@@ -16,36 +12,28 @@ import {
   View,
 } from "react-native";
 import { Footer, Header, MoreOptionLogin } from "../components";
-import { LoginRequestParams, useLoginScreen } from "./LoginScreen.hook";
-import { styles } from "./LoginScreen.styles";
+import { styles } from "./Register.styles";
+import { useRegisterScreen, RegisterRequestParams } from "./Register.hook";
 
-export interface LoginScreenParams {
-  isGoBack?: boolean;
-}
+export interface RegisterScreenParams {}
 
-type NavigationRoute = RouteProp<AuthStackParamList, SCREENS.LOGIN_SCREEN>;
+// type NavigationRoute = RouteProp<AuthStackParamList, SCREENS.LOGIN_SCREEN>;
 
-export const LoginScreen: React.FunctionComponent = () => {
+export const RegisterScreen: React.FunctionComponent = () => {
   const navigation = useAppNavigation();
-  const route = useRoute<NavigationRoute>();
-  const isGoBack = route?.params?.isGoBack;
-  const [isSecure, , , toggleSecure] = useBoolean(true);
   const language = useAppSelector((state: IRootState) => state.user.language);
+  const [isSecurePass, , , toggleSecurePass] = useBoolean(true);
+  const [isSecureConfirm, , , toggleSecureConfirm] = useBoolean(true);
+
   const {
     email,
     password,
-    isRemember,
-    isLoading,
-    onClear,
+    confirm,
     onChangeText,
-    loginWithEmail,
-  } = useLoginScreen();
-
-  const gotoForgetPassword = () => {
-    // navigation.navigate(SCREENS.FORGOT_PASSWORD);
-  };
-
-  const gotoRegister = () => navigation.navigate(SCREENS.REGISTER_SCREEN);
+    onClear,
+    isLoading,
+    handleRegister,
+  } = useRegisterScreen();
 
   useEffect(() => {}, [language]);
 
@@ -56,7 +44,7 @@ export const LoginScreen: React.FunctionComponent = () => {
         paddingTop: CThemes.screenUtils.getStatusBarHeight(),
       }}
     >
-      <Header isGoBack={isGoBack} language={language || ""} />
+      <Header isGoBack={true} language={language || ""} />
       <KeyboardAvoidingView
         enabled={Platform.OS === "ios"}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -74,13 +62,12 @@ export const LoginScreen: React.FunctionComponent = () => {
             }}
           >
             <CTextInput
-              editable={!isLoading}
               label={translate("label.email")}
               placeholder={translate("loginScreen.email")}
               value={email}
               isRequired
-              onChangeText={onChangeText(LoginRequestParams.EMAIL)}
-              onClearInput={onClear(LoginRequestParams.EMAIL)}
+              onChangeText={onChangeText(RegisterRequestParams.EMAIL)}
+              onClearInput={onClear(RegisterRequestParams.EMAIL)}
               textContentType="emailAddress"
               keyboardType="email-address"
               autoCapitalize={"none"}
@@ -92,35 +79,33 @@ export const LoginScreen: React.FunctionComponent = () => {
               placeholder={translate("loginScreen.password")}
               returnKeyType="done"
               value={password}
-              secureTextEntry={isSecure}
-              onChangeText={onChangeText(LoginRequestParams.PASSWORD)}
-              onClearInput={onClear(LoginRequestParams.PASSWORD)}
+              secureTextEntry={isSecurePass}
+              onChangeText={onChangeText(RegisterRequestParams.PASSWORD)}
+              onClearInput={onClear(RegisterRequestParams.PASSWORD)}
               containerStyle={{ marginTop: CThemes.constantStyles.spacing16 }}
               isRequired
               isShowIconRight
-              rightIconName={isSecure ? "ic_eye" : "ic_eye_slash"}
-              rightIconClick={toggleSecure}
+              rightIconName={isSecurePass ? "ic_eye" : "ic_eye_slash"}
+              rightIconClick={toggleSecurePass}
             />
-          </View>
-          <View
-            style={{
-              ...CGlobalStyles.rowBetween,
-              marginVertical: CThemes.constantStyles.spacing16,
-            }}
-          >
-            <CCheckBox
-              isChecked={isRemember}
-              handleCheck={onChangeText}
-              content={translate("loginScreen.remember")}
+            <CTextInput
+              label={translate("label.password")}
+              editable={!isLoading}
+              placeholder={translate("loginScreen.password")}
+              returnKeyType="done"
+              value={confirm}
+              secureTextEntry={isSecureConfirm}
+              onChangeText={onChangeText}
+              onClearInput={onClear}
+              containerStyle={{ marginTop: CThemes.constantStyles.spacing16 }}
+              isRequired
+              isShowIconRight
+              rightIconName={isSecureConfirm ? "ic_eye" : "ic_eye_slash"}
+              rightIconClick={toggleSecureConfirm}
             />
-            <TouchableOpacity onPress={gotoForgetPassword}>
-              <Text style={styles.forgotPassword}>
-                {translate("loginScreen.forgotPassword")}
-              </Text>
-            </TouchableOpacity>
           </View>
           <CButton
-            onPress={loginWithEmail}
+            onPress={handleRegister}
             name={translate("label.login")}
             isLoading={isLoading}
           />
@@ -133,7 +118,7 @@ export const LoginScreen: React.FunctionComponent = () => {
             <Text style={styles.noAccount}>
               {translate("loginScreen.noAccount")}
             </Text>
-            <TouchableOpacity onPress={gotoRegister}>
+            <TouchableOpacity onPress={navigation.goBack}>
               <Text
                 style={{
                   ...styles.noAccount,
@@ -141,7 +126,7 @@ export const LoginScreen: React.FunctionComponent = () => {
                   color: CThemes.colors.primary6s,
                 }}
               >
-                {translate("loginScreen.createAccount")}
+                {translate("label.login")}
               </Text>
             </TouchableOpacity>
           </View>

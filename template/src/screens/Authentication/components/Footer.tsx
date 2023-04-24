@@ -3,11 +3,11 @@ import { CThemes, translate } from "@shared";
 import React, { FunctionComponent } from "react";
 import { Platform, Text, View, TouchableOpacity } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { styles } from "./styles";
+import { styles } from "../LoginScreen/LoginScreen.styles";
 
 interface FooterProps {}
 
-export const Footer: FunctionComponent<FooterProps> = () => {
+const _Footer: FunctionComponent<FooterProps> = () => {
   const insets = useSafeAreaInsets();
   const handleContactUs = () => {};
 
@@ -36,3 +36,5 @@ export const Footer: FunctionComponent<FooterProps> = () => {
     </TouchableOpacity>
   );
 };
+
+export const Footer = React.memo(_Footer);

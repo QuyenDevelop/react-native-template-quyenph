@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { BaseLabel, LabelProps } from "@janbox/rn-core-ui";
+import { BaseLabel, LabelProps } from "@phamquyen/rn-core-components";
 import { CIcon } from "../CIcons";
 
 interface CLabelProps extends LabelProps {

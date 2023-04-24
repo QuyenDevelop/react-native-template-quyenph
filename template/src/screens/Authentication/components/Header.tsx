@@ -13,23 +13,23 @@ interface HeaderLoginProps {
   isGoBack?: boolean;
 }
 
-export const Header: FunctionComponent<HeaderLoginProps> = ({
+const _Header: FunctionComponent<HeaderLoginProps> = ({
   isGoBack = false,
   language,
 }) => {
   const dispatch = useAppDispatch();
   const navigation = useAppNavigation();
+  const [isShowModalLanguage, showModalLanguage, hideModalLanguage] =
+    useBoolean();
 
   const languageSelected = DATA_CONSTANT.LANGUAGE.find(
     item => item.value === language,
   );
-  const [isShowModalLanguage, showModalLanguage, hideModalLanguage] =
-    useBoolean();
 
-  const handleChangeLanguage = (language: string) => {
+  const handleChangeLanguage = React.useCallback((language: string) => {
     dispatch(asyncChangeLanguage(language));
     hideModalLanguage();
-  };
+  }, []);
 
   const renderGoback = () => (
     <View style={CGlobalStyles.appContent}>
@@ -92,3 +92,5 @@ export const Header: FunctionComponent<HeaderLoginProps> = ({
     </>
   );
 };
+
+export const Header = React.memo(_Header);

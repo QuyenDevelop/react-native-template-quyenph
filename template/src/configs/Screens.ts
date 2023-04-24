@@ -4,6 +4,8 @@ export enum SCREENS {
   // ------- Authentication stack
   AUTH_STACK = "AUTH_STACK",
   LOGIN_SCREEN = "LOGIN_SCREEN",
+  REGISTER_SCREEN = "REGISTER_SCREEN",
+  FORGOT_PASSWORD = "FORGOT_PASSWORD",
 
   // ------- Home stack
   HOME_STACK = "HOME_STACK",

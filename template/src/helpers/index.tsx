@@ -1,5 +1,6 @@
 export * from "./Utils";
 export * from "./alert-utils";
+export * from "./navigationUtils";
+
 import * as AsyncStorage from "./asyncStorage";
-import * as NavigationUtils from "./navigationUtils";
-export { NavigationUtils, AsyncStorage };
+export { AsyncStorage };

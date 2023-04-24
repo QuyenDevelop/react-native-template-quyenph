@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { ITooltip, IToolTipProps } from "@janbox/rn-core-ui";
+import { ITooltip, IToolTipProps } from "@phamquyen/rn-core-components";
 
 interface CTooltipProps extends IToolTipProps {}
 

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { BasePopup, PopupProps } from "@janbox/rn-core-ui";
+import { BasePopup, PopupProps } from "@phamquyen/rn-core-components";
 
 interface CPopupProps extends PopupProps {}
 

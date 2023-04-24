@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Button, ButtonProps } from "@janbox/rn-core-ui";
+import { Button, ButtonProps } from "@phamquyen/rn-core-components";
 import { CIcon } from "../CIcons";
 
 interface CButtonProps extends ButtonProps {

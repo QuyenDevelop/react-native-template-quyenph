@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { BaseSearch, SearchProps } from "@janbox/rn-core-ui";
+import { BaseSearch, SearchProps } from "@phamquyen/rn-core-components";
 import { CIcon } from "../CIcons";
 import { TouchableOpacity } from "react-native";
 import { CONSTANT } from "@configs";
