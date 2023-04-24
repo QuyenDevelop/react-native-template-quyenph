@@ -16,8 +16,8 @@ export const useRegisterScreen = () => {
 
   const onChangeText = useCallback(
     (type?: string) => (value: string) => {
-      if (type === RegisterRequestParams.EMAIL) setEmail(value);
-      if (type === RegisterRequestParams.PASSWORD) setPassword(value);
+      if (type === RegisterRequestParams.EMAIL) return setEmail(value);
+      if (type === RegisterRequestParams.PASSWORD) return setPassword(value);
       setConfirm(value);
     },
     [],
@@ -25,14 +25,16 @@ export const useRegisterScreen = () => {
 
   const onClear = useCallback(
     (type?: string) => () => {
-      if (type === RegisterRequestParams.EMAIL) setEmail("");
-      if (type === RegisterRequestParams.PASSWORD) setPassword("");
-      return setConfirm("");
+      if (type === RegisterRequestParams.EMAIL) return setEmail("");
+      if (type === RegisterRequestParams.PASSWORD) return setPassword("");
+      setConfirm("");
     },
     [],
   );
 
-  const handleRegister = () => {};
+  const handleRegister = useCallback(() => {
+    // ---- logic register
+  }, []);
 
   return {
     email,

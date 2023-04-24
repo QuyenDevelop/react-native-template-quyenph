@@ -35,15 +35,14 @@ export const LoginScreen: React.FunctionComponent = () => {
     email,
     password,
     isRemember,
+    toggleRemember,
     isLoading,
     onClear,
     onChangeText,
     loginWithEmail,
   } = useLoginScreen();
 
-  const gotoForgetPassword = () => {
-    // navigation.navigate(SCREENS.FORGOT_PASSWORD);
-  };
+  const gotoForgetPassword = () => navigation.navigate(SCREENS.FORGOT_PASSWORD);
 
   const gotoRegister = () => navigation.navigate(SCREENS.REGISTER_SCREEN);
 
@@ -110,7 +109,7 @@ export const LoginScreen: React.FunctionComponent = () => {
           >
             <CCheckBox
               isChecked={isRemember}
-              handleCheck={onChangeText}
+              handleCheck={toggleRemember}
               content={translate("loginScreen.remember")}
             />
             <TouchableOpacity onPress={gotoForgetPassword}>

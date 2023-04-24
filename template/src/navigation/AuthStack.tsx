@@ -1,11 +1,17 @@
 import { SCREENS } from "@configs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { LoginScreen, LoginScreenParams, RegisterScreen } from "@screens";
+import {
+  ForgotPasswordScreen,
+  LoginScreen,
+  LoginScreenParams,
+  RegisterScreen,
+} from "@screens";
 import React from "react";
 
 export type AuthStackParamList = {
   [SCREENS.LOGIN_SCREEN]: LoginScreenParams;
   [SCREENS.REGISTER_SCREEN]: undefined;
+  [SCREENS.FORGOT_PASSWORD]: undefined;
 };
 
 const AuthenticationNavigator =
@@ -26,6 +32,10 @@ export const AuthStack = () => {
       <AuthenticationNavigator.Screen
         name={SCREENS.REGISTER_SCREEN}
         component={RegisterScreen}
+      />
+      <AuthenticationNavigator.Screen
+        name={SCREENS.FORGOT_PASSWORD}
+        component={ForgotPasswordScreen}
       />
     </AuthenticationNavigator.Navigator>
   );

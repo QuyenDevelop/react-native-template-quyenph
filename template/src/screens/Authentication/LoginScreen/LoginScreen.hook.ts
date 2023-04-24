@@ -1,7 +1,7 @@
 import { CONSTANT, SCREENS } from "@configs";
-import { AsyncStorage, navigationRef } from "@helpers";
+import { AsyncStorage } from "@helpers";
 import { useAppNavigation, useBoolean } from "@hooks";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export enum LoginRequestParams {
   EMAIL = "EMAIL",
@@ -12,27 +12,20 @@ export const useLoginScreen = () => {
   const navigation = useAppNavigation();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isRemember, setIsRemember] = useState<boolean>(false);
+  const [isRemember, showRemember, , toggleRemember] = useBoolean(false);
   const [isLoading, showLoading, hideLoading] = useBoolean(false);
 
   const onChangeText = useCallback(
     (type?: string) => (value: string) => {
-      if (type === LoginRequestParams.EMAIL) {
-        setEmail(value);
-      }
-      if (type === LoginRequestParams.PASSWORD) {
-        setPassword(value);
-      }
-      setIsRemember(!isRemember);
+      if (type === LoginRequestParams.EMAIL) return setEmail(value);
+      setPassword(value);
     },
     [],
   );
 
   const onClear = useCallback(
     (type: string) => () => {
-      if (type === LoginRequestParams.EMAIL) {
-        return setEmail("");
-      }
+      if (type === LoginRequestParams.EMAIL) return setEmail("");
       return setPassword("");
     },
     [],
@@ -44,7 +37,7 @@ export const useLoginScreen = () => {
     );
     if (emailRemember) {
       setEmail(emailRemember);
-      setIsRemember(true);
+      showRemember();
     }
   };
 
@@ -81,6 +74,7 @@ export const useLoginScreen = () => {
     password,
     isRemember,
     onChangeText,
+    toggleRemember,
     onClear,
     isLoading,
     loginWithEmail,

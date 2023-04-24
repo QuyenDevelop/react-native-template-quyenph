@@ -17,7 +17,7 @@ export const AppErrorBoundary: React.FunctionComponent = () => {
         style={styles.imgAppErrorBoundary}
         resizeMode={FastImage.resizeMode.cover}
       />
-      <Text style={styles.noResultTitle}>{translate("label.oops")}</Text>
+      <Text style={styles.noResultTitle}>{translate("error.oops")}</Text>
       <TouchableOpacity style={styles.buttonStyle} onPress={handleRefreshApp}>
         <Text style={styles.buttonTitle}>{translate("buttonRefresh")}</Text>
       </TouchableOpacity>
