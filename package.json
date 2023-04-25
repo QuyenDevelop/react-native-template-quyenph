@@ -1,7 +1,7 @@
 {
   "name": "react-native-template-quyenph",
   "title": "A customize template for React Native.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A customize template for React Native.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,7 +15,10 @@
     "typescript",
     "quyenph",
     "template",
-    "custom template"
+    "custom template",
+    "redux-toolkit",
+    "vector-icons",
+    "react-navigation"
   ],
   "repository": {
     "type": "git",
