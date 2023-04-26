@@ -1,6 +1,4 @@
 import {
-  // RouteProp,
-  // CommonActions,
   createNavigationContainerRef,
   ParamListBase,
 } from "@react-navigation/core";
@@ -13,7 +11,7 @@ export const navigationRef = createNavigationContainerRef<any>();
 
 export function navigate<T extends object>(name: string, params?: T) {
   if (navigationRef.isReady()) {
-    navigationRef.navigate(name, params);
+    navigationRef?.current?.navigate(name, params);
   }
 }
 

@@ -5,12 +5,9 @@
  * @format
  */
 
-import { DropdownMessageHolder } from "@helpers";
-import { RootNavigator, RootStackParamList } from "@navigation";
-import {
-  NavigationContainer,
-  createNavigationContainerRef,
-} from "@react-navigation/native";
+import { DropdownMessageHolder, navigationRef } from "@helpers";
+import { RootNavigator } from "@navigation";
+import { NavigationContainer } from "@react-navigation/native";
 import { CGlobalStyles } from "@shared";
 import React from "react";
 import { Platform, StatusBar, UIManager, View } from "react-native";
@@ -29,8 +26,6 @@ if (
 }
 
 const AwesomeApp = () => {
-  const navigationRef = createNavigationContainerRef<RootStackParamList>();
-
   return (
     <View style={CGlobalStyles.appContent}>
       <StatusBar />

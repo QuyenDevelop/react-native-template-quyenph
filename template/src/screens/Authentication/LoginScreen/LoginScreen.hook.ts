@@ -1,7 +1,8 @@
-import { CONSTANT, SCREENS } from "@configs";
+import { CONSTANT } from "@configs";
 import { AsyncStorage } from "@helpers";
-import { useAppNavigation, useBoolean } from "@hooks";
-import { useCallback, useEffect, useState } from "react";
+import { useAppDispatch, useBoolean } from "@hooks";
+import { asyncLoginAction } from "@redux";
+import { useEffect, useState } from "react";
 
 export enum LoginRequestParams {
   EMAIL = "EMAIL",
@@ -9,27 +10,22 @@ export enum LoginRequestParams {
 }
 
 export const useLoginScreen = () => {
-  const navigation = useAppNavigation();
+  // const navigation = useAppNavigation();
+  const dispatch = useAppDispatch();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isRemember, showRemember, , toggleRemember] = useBoolean(false);
   const [isLoading, showLoading, hideLoading] = useBoolean(false);
 
-  const onChangeText = useCallback(
-    (type?: string) => (value: string) => {
-      if (type === LoginRequestParams.EMAIL) return setEmail(value);
-      setPassword(value);
-    },
-    [],
-  );
+  const onChangeText = (type?: string) => (value: string) => {
+    if (type === LoginRequestParams.EMAIL) return setEmail(value);
+    setPassword(value);
+  };
 
-  const onClear = useCallback(
-    (type: string) => () => {
-      if (type === LoginRequestParams.EMAIL) return setEmail("");
-      return setPassword("");
-    },
-    [],
-  );
+  const onClear = (type: string) => () => {
+    if (type === LoginRequestParams.EMAIL) return setEmail("");
+    return setPassword("");
+  };
 
   const getEmailRemember = async () => {
     const emailRemember = await AsyncStorage.getAsyncItem(
@@ -45,7 +41,7 @@ export const useLoginScreen = () => {
     getEmailRemember();
   }, []);
 
-  const loginWithEmail = () => {
+  const loginWithEmail = async () => {
     showLoading();
     if (isRemember) {
       AsyncStorage.setAsyncItem(
@@ -55,17 +51,14 @@ export const useLoginScreen = () => {
     } else {
       AsyncStorage.removeAsyncItem(CONSTANT.TOKEN_STORAGE_KEY.REMEMBER_USER);
     }
-    // dispatch(
-    //   asyncLoginAction({
-    //     username: email,
-    //     password: password,
-    //   }),
-    // );
     setTimeout(() => {
       hideLoading();
-      navigation.navigate(SCREENS.BOTTOM_TAB_NAVIGATION, {
-        screen: SCREENS.HOME_SCREEN,
-      });
+      dispatch(
+        asyncLoginAction({
+          username: email,
+          password: password,
+        }),
+      );
     }, 2000);
   };
 

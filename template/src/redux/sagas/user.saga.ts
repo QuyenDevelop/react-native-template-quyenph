@@ -45,7 +45,9 @@ function* takeLogin(action: PayloadAction<loginInternalPayload>) {
       );
       if (response) {
         yield call(takeUserInfo);
-        yield () => navigationRef.navigate(SCREENS.ACCOUNT_INFORMATION_SCREEN);
+        yield navigationRef.navigate(SCREENS.ACCOUNT_STACK, {
+          screen: SCREENS.ACCOUNT_INFORMATION_SCREEN,
+        });
         yield Utils.storeTokenResponse(response);
       }
     } else {
