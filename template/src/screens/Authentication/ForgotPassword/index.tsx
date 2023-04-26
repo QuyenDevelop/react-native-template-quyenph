@@ -12,18 +12,13 @@ import {
   View,
 } from "react-native";
 import { Footer, Header, MoreOptionLogin } from "../components";
-import { styles } from "./ForgotPassword.styles";
 import { useForgotPasswordScreen } from "./ForgotPassword.hook";
-
-export interface ForgotPasswordParams {}
-
-// type NavigationRoute = RouteProp<AuthStackParamList, SCREENS.LOGIN_SCREEN>;
+import { styles } from "./ForgotPassword.styles";
 
 export const ForgotPasswordScreen: React.FunctionComponent = () => {
   const navigation = useAppNavigation();
   //   const route = useRoute<NavigationRoute>();
   const language = useAppSelector((state: IRootState) => state.user.language);
-
   const { email, setEmail, isLoading, handleForgotPassword } =
     useForgotPasswordScreen();
 
